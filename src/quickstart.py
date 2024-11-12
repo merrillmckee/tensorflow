@@ -31,7 +31,15 @@ def quickstart():
                   loss=loss_fn,
                   metrics=['accuracy'])
 
-    model.fit(x_train, y_train, epochs=125)
+    model.fit(x_train, y_train, epochs=25)
+
+    model.evaluate(x_test, y_test, verbose=2)
+
+    probability_model = tf.keras.Sequential([
+        model,
+        tf.keras.layers.Softmax()
+    ])
+    probability_model(x_test[:5])
 
 
 
